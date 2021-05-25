@@ -1,6 +1,3 @@
-//opts
-// encoderOptions 截图质量，单个文件file
-
 function compress(opts) {
   this.options = opts || {
     encoderOptions: 0.92,
@@ -9,9 +6,7 @@ function compress(opts) {
     expectBase64: false, //
     type: "image/jpeg",
   };
-
   const { file } = this.options;
-
   return this.readImgFile(file);
 }
 compress.prototype = {
@@ -34,8 +29,8 @@ compress.prototype = {
     });
   },
   toBuffer(img, fileName) {
-    let imgBase64 = this.canvasCompressImg(img); //canvas截
-    let fileBuffer = this.formatBase64ToUnicode(imgBase64, fileName); // 拆码转unicode array(8||16) 这个另说吧
+    let imgBase64 = this.canvasCompressImg(img);
+    let fileBuffer = this.formatBase64ToUnicode(imgBase64, fileName);
     let formData = new FormData();
     formData.append("file", fileBuffer);
     return this.options.expectBase64
